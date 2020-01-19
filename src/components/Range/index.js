@@ -13,7 +13,7 @@ class Range extends React.Component {
 		super(props)
 
 		this.state = {
-			value: 5,
+			value: this.props.temperature,
 		}
 	}
 
