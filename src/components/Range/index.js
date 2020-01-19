@@ -2,6 +2,7 @@ import React from "react"
 import InputRange from "react-input-range"
 import styled from "styled-components"
 import Paragraph from "../Paragraph"
+import "./styles.css"
 
 const Wrapper = styled.div`
 	margin-left: auto;

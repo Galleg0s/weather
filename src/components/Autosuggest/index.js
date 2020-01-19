@@ -1,8 +1,8 @@
 import React from "react"
-import "./styles.css"
-import ReactAutosuggest from "react-autosuggest"
+import Autosuggest from "react-autosuggest"
 import AutosuggestHighlightMatch from "autosuggest-highlight/match"
 import AutosuggestHighlightParse from "autosuggest-highlight/parse"
+import "./styles.css"
 
 const languages = [
 	{
@@ -105,7 +105,7 @@ function renderSuggestion(suggestion, { query }) {
 	)
 }
 
-class Autosuggest extends React.Component {
+class App extends React.Component {
 	constructor() {
 		super()
 
@@ -115,7 +115,7 @@ class Autosuggest extends React.Component {
 		}
 	}
 
-	onChangeHandler = ({ newValue, method }) => {
+	onChange = (event, { newValue, method }) => {
 		this.setState({
 			value: newValue,
 		})
@@ -136,13 +136,13 @@ class Autosuggest extends React.Component {
 	render() {
 		const { value, suggestions } = this.state
 		const inputProps = {
-			placeholder: "Введите город",
+			placeholder: "Type 'c'",
 			value,
-			onChange: this.onChangeHandler,
+			onChange: this.onChange,
 		}
 
 		return (
-			<ReactAutosuggest
+			<Autosuggest
 				suggestions={suggestions}
 				onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
 				onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -154,11 +154,4 @@ class Autosuggest extends React.Component {
 	}
 }
 
-export default Autosuggest
-// const Autocomplete = ({children}) => {
-//   return (
-//       <StyledAutocomplete>
-
-//       </StyledAutocomplete>
-//   );
-// };
+export default App
