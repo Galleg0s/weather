@@ -5,7 +5,7 @@ import Paragraph from "../Paragraph"
 import "./styles.css"
 
 const Wrapper = styled.div`
-	margin-left: auto;
+	margin-left: auto !important;
 `
 
 class Range extends React.Component {

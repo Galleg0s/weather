@@ -136,7 +136,7 @@ class App extends React.Component {
 	render() {
 		const { value, suggestions } = this.state
 		const inputProps = {
-			placeholder: "Type 'c'",
+			placeholder: "Введите город",
 			value,
 			onChange: this.onChange,
 		}
