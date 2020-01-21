@@ -1,39 +1,52 @@
 import {
 	ADD_CITY,
 	DELETE_CITY,
-	INPUT_CITY_NAME,
 	SET_TEMPERATURE_VALUE,
+	FETCH_SUGGESTIONS,
+	SET_SUGGESTION_LIST,
+	SET_NEXT_CITY_NAME,
 } from "./constants"
-
-let nextCityId = 0
 
 export const addCity = name => {
 	return {
 		type: ADD_CITY,
 		payload: {
 			name,
-			id: ++nextCityId,
 		},
 	}
 }
 
-export const deleteCity = id => {
+export const deleteCity = name => {
 	return {
 		type: DELETE_CITY,
-		payload: id,
-	}
-}
-
-export const inputCityName = name => {
-	return {
-		type: INPUT_CITY_NAME,
 		payload: name,
 	}
 }
 
-export const setTemperatureFilter = degrees => {
+export const changeTemperature = degrees => {
 	return {
 		type: SET_TEMPERATURE_VALUE,
 		payload: degrees,
+	}
+}
+
+export const fetchSuggestions = name => {
+	return {
+		type: FETCH_SUGGESTIONS,
+		payload: name,
+	}
+}
+
+export const setSuggestionList = suggestionList => {
+	return {
+		type: SET_SUGGESTION_LIST,
+		payload: suggestionList,
+	}
+}
+
+export const setNextCityName = name => {
+	return {
+		type: SET_NEXT_CITY_NAME,
+		payload: name,
 	}
 }

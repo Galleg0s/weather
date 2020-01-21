@@ -1,6 +1,18 @@
 import { createStore, applyMiddleware, compose } from "redux"
-import logger from "redux-logger"
-import rootReducer from "./reducers/index"
+import createSagaMiddleware from "redux-saga"
+import { composeWithDevTools } from "redux-devtools-extension"
+import rootReducer from "./reducers"
 
-const store = createStore(rootReducer, applyMiddleware(logger))
+import rootSaga from "./sagas"
+
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware()
+
+const store = createStore(
+	rootReducer,
+	compose(applyMiddleware(sagaMiddleware), composeWithDevTools())
+)
+
+sagaMiddleware.run(rootSaga)
+
 export default store

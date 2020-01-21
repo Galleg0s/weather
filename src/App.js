@@ -1,6 +1,12 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { addCity, deleteCity } from "./redux/actions"
+import {
+	addCity,
+	deleteCity,
+	changeTemperature,
+	fetchSuggestions,
+	setNextCityName,
+} from "./redux/actions"
 
 import {
 	Autosuggest,
@@ -11,22 +17,35 @@ import {
 	Grid,
 } from "./components"
 
+import { throttle, debounce } from "throttle-debounce"
+
 class App extends Component {
 	handleAddButtonClick = () => {
 		this.props.addCity("Москва")
 	}
 
-	handleDeleteButtonClick = id => {
-		this.props.deleteCity(id)
+	handleDeleteButtonClick = name => {
+		this.props.deleteCity(name)
+	}
+
+	handleRangeChange = degrees => {
+		this.props.changeTemperature(degrees)
 	}
 
 	render() {
 		return (
 			<Wrapper>
 				<Grid childrenMargins="0 0 30px 0">
-					<Autosuggest />
+					<Autosuggest
+						suggestionList={this.props.suggestionList}
+						fetchSuggestions={this.props.fetchSuggestions}
+						setNextCityName={setNextCityName}
+					/>
 					<AddCityButton handleAddButtonClick={this.handleAddButtonClick} />
-					<Range temperature={this.props.temperature} />
+					<Range
+						temperature={this.props.temperature}
+						handleRangeChange={throttle(200, this.handleRangeChange)}
+					/>
 				</Grid>
 				<Grid childrenMargins="0 20px 20px 0">
 					<CardList
@@ -43,12 +62,16 @@ const mapStateToProps = store => {
 	return {
 		cities: store.cities,
 		temperature: store.temperature,
+		suggestionList: store.suggestions.suggestionList,
 	}
 }
 
 const mapDispatchToProps = dispatch => ({
 	addCity: city => dispatch(addCity(city)),
-	deleteCity: id => dispatch(deleteCity(id)),
+	deleteCity: name => dispatch(deleteCity(name)),
+	changeTemperature: degrees => dispatch(changeTemperature(degrees)),
+	fetchSuggestions: suggestions => dispatch(fetchSuggestions(suggestions)),
+	setNextCityName: name => dispatch(setNextCityName(name)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
