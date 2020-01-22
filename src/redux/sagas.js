@@ -1,12 +1,13 @@
-import { call, put, select, takeLatest, takeEvery } from "redux-saga/effects"
+import { call, put, takeLatest, takeEvery } from "redux-saga/effects"
 import { FETCH_SUGGESTIONS, ADD_CITY, ADD_WEATHER_TO_CITY } from "./constants"
 import { setSuggestionList } from "./actions"
 import get from "./api"
-import { getCities } from "./selectors"
 
 function filterSuggestions(results) {
 	const duplicatedCities = results
-		.filter(result => result.localityType)
+		.filter(
+			result => result.localityType && result.localityType.code === "city-city"
+		)
 		.map(result => result.name)
 
 	return [...new Set(duplicatedCities)]
@@ -34,8 +35,8 @@ function* addCityWatcher({ payload }) {
 			pressure: data[0].pres,
 			temperature: data[0].temp,
 			icon: {
-				icon: data[0].weather.icon,
-				alt: data[0].weather.description,
+				code: data[0].weather.icon,
+				description: data[0].weather.description,
 			},
 		}
 
@@ -43,10 +44,9 @@ function* addCityWatcher({ payload }) {
 			type: ADD_WEATHER_TO_CITY,
 			payload: { name: payload, ...cityWeather },
 		})
-		// yield put({ type: ADD_CITY_WITH_WEATHER, payload: cityWithWeather })
 	} catch (error) {
 		// yield put({ type: "FAIL_TO_FETCH", error })
-		// удалить город из списка
+		// попробуйте выбрать другой вариант
 	}
 }
 

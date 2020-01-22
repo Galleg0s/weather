@@ -2,24 +2,44 @@ import React from "react"
 import StyledCard from "./styles"
 import Paragraph from "../Paragraph"
 import DeleteButton from "./DeleteButton"
+import formatTemperature from "../../utils"
+import Grid from "../Grid"
 
-const Card = ({ name, weather, handleDeleteButtonClick }) => {
-	return weather ? (
+const Card = ({
+	name,
+	wind,
+	pressure,
+	temperature,
+	icon,
+	handleDeleteButtonClick,
+}) => {
+	const Icon = code => {
+		return (
+			<img
+				width="50"
+				height="50"
+				src={`https://www.weatherbit.io/static/img/icons/${icon.code}.png`}
+				alt={icon.description}
+			/>
+		)
+	}
+
+	return wind ? (
 		<StyledCard>
 			<Paragraph fontSize="16px" fontWeight="bold" paddings="0 0 12px 0">
 				{name}
 			</Paragraph>
-			<div>
-				<img src="" alt="Погода" />
-				<Paragraph fontSize="20px" fontWeight="700">
-					{weather.temperature}
+			<Grid alignItems="center">
+				<Icon code={icon.code} description={icon.description} />
+				<Paragraph fontSize="20px" fontWeight="700" margins="0 0 0 15px">
+					{formatTemperature(temperature)}
 				</Paragraph>
-			</div>
+			</Grid>
 			<Paragraph fontSize="14px" paddings="0 0 6px 0">
-				Ветер: {weather.wind}
+				Ветер: {wind} м/с
 			</Paragraph>
 			<Paragraph fontSize="14px" paddings="0 0 6px 0">
-				Давление: {weather.pressure}
+				Давление: {pressure} мм
 			</Paragraph>
 			<DeleteButton onClick={() => handleDeleteButtonClick(name)} />
 		</StyledCard>

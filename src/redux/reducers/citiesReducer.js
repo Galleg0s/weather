@@ -16,7 +16,7 @@ const citiesReducer = (state = initialState, action) => {
 			return state.filter(city => city.name !== action.payload)
 		case ADD_WEATHER_TO_CITY:
 			const cities = state.map(city =>
-				city.name === action.payload.name ? { city: action.payload } : city
+				city.name === action.payload.name ? action.payload : city
 			)
 			return [...cities]
 		default:

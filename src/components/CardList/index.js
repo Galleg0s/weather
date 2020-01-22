@@ -2,13 +2,14 @@ import React from "react"
 import Card from "../Card"
 
 const CardList = ({ cities, handleDeleteButtonClick }) => {
-	if (cities.length !== 0) debugger
-	return cities.map((city, index) => (
+	return cities.map(city => (
 		<Card
-			// eslint-disable-next-line react/no-array-index-key
-			key={`${city.name}${index}`}
+			key={`${city.name}`}
 			name={city.name}
-			weather={city.weather}
+			wind={city.wind}
+			pressure={city.pressure}
+			temperature={city.temperature}
+			icon={city.icon}
 			handleDeleteButtonClick={handleDeleteButtonClick}
 		/>
 	))

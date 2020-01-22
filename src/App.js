@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+
 import {
 	addCity,
 	deleteCity,
@@ -7,6 +8,13 @@ import {
 	fetchSuggestions,
 	setNextCityName,
 } from "./redux/actions"
+
+import {
+	getCities,
+	getTemperature,
+	getSuggestionList,
+	getNextCity,
+} from "./redux/selectors"
 
 import {
 	Autosuggest,
@@ -66,12 +74,12 @@ class App extends Component {
 	}
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = state => {
 	return {
-		cities: store.cities,
-		temperature: store.temperature,
-		suggestionList: store.suggestions.suggestionList,
-		nextCity: store.nextCity,
+		cities: getCities(state),
+		temperature: getTemperature(state),
+		suggestionList: getSuggestionList(state),
+		nextCity: getNextCity(state),
 	}
 }
 
