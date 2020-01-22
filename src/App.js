@@ -21,13 +21,18 @@ import { throttle, debounce } from "throttle-debounce"
 
 class App extends Component {
 	handleAddButtonClick = () => {
-		this.props.addCity("Москва")
+		const isCityCardExist =
+			this.props.cities.filter(city => city.name === this.props.nextCity)
+				.length === 1
+
+		if (this.props.nextCity !== "" && !isCityCardExist) {
+			this.props.addCity(this.props.nextCity)
+		}
 	}
 
 	handleDeleteButtonClick = name => {
 		this.props.deleteCity(name)
 	}
-
 	handleRangeChange = degrees => {
 		this.props.changeTemperature(degrees)
 	}
@@ -39,9 +44,12 @@ class App extends Component {
 					<Autosuggest
 						suggestionList={this.props.suggestionList}
 						fetchSuggestions={this.props.fetchSuggestions}
-						setNextCityName={setNextCityName}
+						setNextCityName={this.props.setNextCityName}
 					/>
-					<AddCityButton handleAddButtonClick={this.handleAddButtonClick} />
+					<AddCityButton
+						nextCity={this.props.nextCity}
+						handleAddButtonClick={this.handleAddButtonClick}
+					/>
 					<Range
 						temperature={this.props.temperature}
 						handleRangeChange={throttle(200, this.handleRangeChange)}
@@ -63,6 +71,7 @@ const mapStateToProps = store => {
 		cities: store.cities,
 		temperature: store.temperature,
 		suggestionList: store.suggestions.suggestionList,
+		nextCity: store.nextCity,
 	}
 }
 
