@@ -4,7 +4,7 @@ import Paragraph from "../Paragraph"
 import DeleteButton from "./DeleteButton"
 
 const Card = ({ name, weather, handleDeleteButtonClick }) => {
-	return (
+	return weather ? (
 		<StyledCard>
 			<Paragraph fontSize="16px" fontWeight="bold" paddings="0 0 12px 0">
 				{name}
@@ -23,7 +23,7 @@ const Card = ({ name, weather, handleDeleteButtonClick }) => {
 			</Paragraph>
 			<DeleteButton onClick={() => handleDeleteButtonClick(name)} />
 		</StyledCard>
-	)
+	) : null
 }
 
 export default Card

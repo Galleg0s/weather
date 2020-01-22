@@ -5,14 +5,13 @@ import {
 	FETCH_SUGGESTIONS,
 	SET_SUGGESTION_LIST,
 	SET_NEXT_CITY_NAME,
+	ADD_CITY_WITH_WEATHER,
 } from "./constants"
 
 export const addCity = name => {
 	return {
 		type: ADD_CITY,
-		payload: {
-			name,
-		},
+		payload: name,
 	}
 }
 
@@ -48,5 +47,12 @@ export const setNextCityName = name => {
 	return {
 		type: SET_NEXT_CITY_NAME,
 		payload: name,
+	}
+}
+
+export const addCityWithWeather = cityWithWeather => {
+	return {
+		type: ADD_CITY_WITH_WEATHER,
+		payload: cityWithWeather,
 	}
 }

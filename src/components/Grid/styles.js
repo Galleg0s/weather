@@ -7,6 +7,7 @@ const StyledGrid = styled.div`
 	& > div {
 		margin: ${props => (props.childrenMargins ? props.childrenMargins : 0)};
 	}
+	align-items: ${props => (props.alignItems ? props.alignItems : "stretch")};
 `
 
 export default StyledGrid
