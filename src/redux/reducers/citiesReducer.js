@@ -15,6 +15,7 @@ const citiesReducer = (state = initialState, action) => {
 		case DELETE_CITY:
 			return state.filter(city => city.name !== action.payload)
 		case ADD_WEATHER_TO_CITY:
+			// eslint-disable-next-line no-case-declarations
 			const cities = state.map(city =>
 				city.name === action.payload.name ? action.payload : city
 			)

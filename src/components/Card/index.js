@@ -12,6 +12,7 @@ const Card = ({
 	temperature,
 	icon,
 	handleDeleteButtonClick,
+	temperatureFilter,
 }) => {
 	const Icon = code => {
 		return (
@@ -24,7 +25,7 @@ const Card = ({
 		)
 	}
 
-	return wind ? (
+	return temperatureFilter <= temperature && wind ? (
 		<StyledCard>
 			<Paragraph fontSize="16px" fontWeight="bold" paddings="0 0 12px 0">
 				{name}

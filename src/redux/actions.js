@@ -1,7 +1,7 @@
 import {
 	ADD_CITY,
 	DELETE_CITY,
-	SET_TEMPERATURE_VALUE,
+	SET_TEMPERATURE_FILTER,
 	FETCH_SUGGESTIONS,
 	SET_SUGGESTION_LIST,
 	SET_NEXT_CITY_NAME,
@@ -22,9 +22,9 @@ export const deleteCity = name => {
 	}
 }
 
-export const changeTemperature = degrees => {
+export const setTemperatureFilter = degrees => {
 	return {
-		type: SET_TEMPERATURE_VALUE,
+		type: SET_TEMPERATURE_FILTER,
 		payload: degrees,
 	}
 }

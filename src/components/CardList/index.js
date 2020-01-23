@@ -1,7 +1,7 @@
 import React from "react"
 import Card from "../Card"
 
-const CardList = ({ cities, handleDeleteButtonClick }) => {
+const CardList = ({ cities, handleDeleteButtonClick, temperatureFilter }) => {
 	return cities.map(city => (
 		<Card
 			key={`${city.name}`}
@@ -11,6 +11,7 @@ const CardList = ({ cities, handleDeleteButtonClick }) => {
 			temperature={city.temperature}
 			icon={city.icon}
 			handleDeleteButtonClick={handleDeleteButtonClick}
+			temperatureFilter={temperatureFilter}
 		/>
 	))
 }
