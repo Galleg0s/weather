@@ -3,7 +3,10 @@ import styled from "styled-components"
 const StyledAutosuggest = styled.div`
 	.react-autosuggest__container {
 		position: relative;
-		padding-right: 5px;
+		margin-right: 5px;
+		@media (max-width: 768px) {
+			margin-right: 0;
+		}
 	}
 
 	.react-autosuggest__input {
@@ -27,18 +30,18 @@ const StyledAutosuggest = styled.div`
 	.react-autosuggest__suggestions-container--open {
 		display: block;
 		position: absolute;
+		box-sizing: border-box;
 		top: 61px;
-		width: 280px;
+		width: 100%;
 		border: 1px solid #aaa;
 		color: #000;
 		background-color: #fff;
-		font-family: Arial, sans-serif;
 		font-weight: 400;
 		font-size: 30px;
-		text-align: left;
-		border-bottom-left-radius: 4px;
-		border-bottom-right-radius: 4px;
 		z-index: 2;
+		@media (max-width: 768px) {
+			width: 100%;
+		}
 	}
 
 	.react-autosuggest__suggestions-list {

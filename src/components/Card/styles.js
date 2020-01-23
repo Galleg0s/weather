@@ -8,5 +8,9 @@ const StyledCard = styled.div`
 	flex-direction: column;
 	border: 1px solid #aaa;
 	padding: 10px 30px 10px 10px;
+	@media (max-width: 768px) {
+		width: auto;
+		margin: 0 0 20px 0 !important;
+	}
 `
 export default StyledCard

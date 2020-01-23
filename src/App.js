@@ -52,7 +52,7 @@ class App extends Component {
 	render() {
 		return (
 			<Wrapper>
-				<Grid childrenMargins="0 0 30px 0" justifyContent="space-between">
+				<Grid justifyContent="space-between">
 					<Grid childrenMargins="0 0 30px 0">
 						<Autosuggest
 							suggestionList={this.props.suggestionList}
