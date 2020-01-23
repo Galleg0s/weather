@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import InputRange from "react-input-range"
 import Paragraph from "../Paragraph"
 import { StyledRange, Wrapper } from "./styles"
@@ -12,7 +13,7 @@ const Range = ({ temperature, handleRangeChange }) => {
 				<InputRange
 					step={1}
 					maxValue={40}
-					minValue={-10}
+					minValue={-20}
 					value={temperature}
 					formatLabel={formatTemperature}
 					onChange={degrees => handleRangeChange(degrees)}
@@ -20,6 +21,11 @@ const Range = ({ temperature, handleRangeChange }) => {
 			</StyledRange>
 		</Wrapper>
 	)
+}
+
+Range.propTypes = {
+	temperature: PropTypes.number.isRequired,
+	handleRangeChange: PropTypes.func.isRequired,
 }
 
 export default Range

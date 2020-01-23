@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import StyledButton from "./styles"
 import Paragraph from "../Paragraph"
 
@@ -10,6 +11,10 @@ const AddCardButton = ({ handleAddButtonClick }) => {
 			</Paragraph>
 		</StyledButton>
 	)
+}
+
+AddCardButton.propTypes = {
+	handleAddButtonClick: PropTypes.func.isRequired,
 }
 
 export default AddCardButton

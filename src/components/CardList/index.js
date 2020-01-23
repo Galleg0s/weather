@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import Card from "../Card"
 
 const CardList = ({ cities, handleDeleteButtonClick, temperatureFilter }) => {
@@ -14,6 +15,12 @@ const CardList = ({ cities, handleDeleteButtonClick, temperatureFilter }) => {
 			temperatureFilter={temperatureFilter}
 		/>
 	))
+}
+
+Card.propTypes = {
+	cities: PropTypes.arrayOf(PropTypes.string),
+	handleDeleteButtonClick: PropTypes.func.isRequired,
+	temperatureFilter: PropTypes.number.isRequired,
 }
 
 export default CardList
