@@ -1,10 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import StyledCard from "./styles"
-import Paragraph from "../Paragraph"
+import { Paragraph } from "../ui"
 import DeleteButton from "./DeleteButton"
 import formatTemperature from "../../utils"
-import Grid from "../Grid"
+import Grid from "../ui/Grid"
 
 const Card = ({
 	name,

@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import StyledButton from "./styles"
-import Paragraph from "../Paragraph"
+import { Paragraph } from "../ui"
 
 const AddCardButton = ({ handleAddButtonClick }) => {
 	return (
