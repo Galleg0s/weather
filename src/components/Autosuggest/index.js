@@ -1,8 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 import Autosuggest from "react-autosuggest"
-// import "./styles.css"
-import StyledAutosuggest from "./styles.js"
+import StyledAutosuggest from "./styles"
 
 const renderSuggestion = suggestion => <div>{suggestion}</div>
 
@@ -11,6 +10,7 @@ const App = ({
 	suggestionList,
 	setNextCityName,
 	setSuggestionList,
+	setHint,
 }) => {
 	const [value, setValue] = useState("")
 
@@ -23,6 +23,7 @@ const App = ({
 	}
 
 	const onSuggestionsClearRequested = () => {
+		setHint("")
 		setSuggestionList("")
 	}
 
@@ -56,6 +57,7 @@ App.propTypes = {
 	suggestionList: PropTypes.arrayOf(PropTypes.string).isRequired,
 	setNextCityName: PropTypes.func.isRequired,
 	setSuggestionList: PropTypes.func.isRequired,
+	setHint: PropTypes.func.isRequired,
 }
 
 export default App

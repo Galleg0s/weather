@@ -8,6 +8,7 @@ import {
 	fetchSuggestions,
 	setNextCityName,
 	setSuggestionList,
+	setHint,
 } from "./redux/actions"
 
 import {
@@ -57,7 +58,8 @@ class App extends Component {
 							suggestionList={this.props.suggestionList}
 							fetchSuggestions={this.props.fetchSuggestions}
 							setNextCityName={this.props.setNextCityName}
-							setSuggestionList={setSuggestionList}
+							setSuggestionList={this.props.setSuggestionList}
+							setHint={this.props.setHint}
 						/>
 						<AddCityButton
 							nextCity={this.props.nextCity}
@@ -69,11 +71,6 @@ class App extends Component {
 						handleRangeChange={throttle(300, this.handleRangeChange)}
 					/>
 				</Grid>
-				{this.props.hint && (
-					<Grid>
-						<Hint message={this.props.hint} />
-					</Grid>
-				)}
 				<Grid childrenMargins="20px 20px 0 0">
 					<CardList
 						cities={this.props.cities}
@@ -81,6 +78,11 @@ class App extends Component {
 						temperatureFilter={this.props.temperature}
 					/>
 				</Grid>
+				{this.props.hint && (
+					<Grid>
+						<Hint message={this.props.hint} />
+					</Grid>
+				)}
 			</Wrapper>
 		)
 	}
@@ -104,6 +106,7 @@ const mapDispatchToProps = dispatch => ({
 	fetchSuggestions: suggestions => dispatch(fetchSuggestions(suggestions)),
 	setNextCityName: name => dispatch(setNextCityName(name)),
 	setSuggestionList: value => dispatch(setSuggestionList(value)),
+	setHint: message => dispatch(setHint(message)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
