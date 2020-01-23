@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 import Autosuggest from "react-autosuggest"
 import "./styles.css"
 
@@ -48,6 +49,12 @@ const App = ({ fetchSuggestions, suggestionList, setNextCityName }) => {
 			inputProps={inputProps}
 		/>
 	)
+}
+
+App.propTypes = {
+	fetchSuggestions: PropTypes.func.isRequired,
+	suggestionList: PropTypes.arrayOf(PropTypes.string).isRequired,
+	setNextCityName: PropTypes.func.isRequired,
 }
 
 export default App

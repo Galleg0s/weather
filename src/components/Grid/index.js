@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import StyledGrid from "./styles"
 
 const Grid = ({ children, childrenMargins, alignItems }) => {
@@ -7,6 +8,17 @@ const Grid = ({ children, childrenMargins, alignItems }) => {
 			{children}
 		</StyledGrid>
 	)
+}
+
+Grid.propTypes = {
+	children: PropTypes.node.isRequired,
+	childrenMargins: PropTypes.string,
+	alignItems: PropTypes.string,
+}
+
+Grid.defaultProps = {
+	childrenMargins: "0",
+	alignItems: "stretch",
 }
 
 export default Grid
