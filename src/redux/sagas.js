@@ -47,8 +47,8 @@ function* addCityWatcher({ payload }) {
 	try {
 		const { data } = yield call(get, weatherApi)
 		const cityWeather = {
-			wind: data[0].wind_spd,
-			pressure: data[0].pres,
+			wind: Math.ceil(data[0].wind_spd),
+			pressure: Math.ceil(data[0].pres),
 			temperature: data[0].temp,
 			icon: {
 				code: data[0].weather.icon,
