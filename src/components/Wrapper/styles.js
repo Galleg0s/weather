@@ -4,8 +4,7 @@ const StyledWrapper = styled.div`
 	margin: 20% auto 0 auto;
 	max-width: 800px;
 	font-family: "Roboto", Arial, sans-serif;
-	font-smooth: auto;
-	font-display: swap;
+	padding: 0 20px;
 `
 
 export default StyledWrapper

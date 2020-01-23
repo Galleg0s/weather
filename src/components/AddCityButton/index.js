@@ -6,7 +6,7 @@ import { Paragraph } from "../ui"
 const AddCardButton = ({ handleAddButtonClick }) => {
 	return (
 		<StyledButton onClick={handleAddButtonClick}>
-			<Paragraph fontSize="35px" fontWeight="300">
+			<Paragraph fontSize="35px" fontWeight="300" textAlign="center">
 				+
 			</Paragraph>
 		</StyledButton>

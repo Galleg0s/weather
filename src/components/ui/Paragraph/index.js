@@ -2,13 +2,21 @@ import React from "react"
 import PropTypes from "prop-types"
 import StyledParagraph from "./styles"
 
-const Paragraph = ({ children, fontSize, fontWeight, margins, paddings }) => {
+const Paragraph = ({
+	children,
+	fontSize,
+	fontWeight,
+	margins,
+	paddings,
+	textAlign,
+}) => {
 	return (
 		<StyledParagraph
 			fontSize={fontSize}
 			fontWeight={fontWeight}
 			margins={margins}
 			paddings={paddings}
+			textAlign={textAlign}
 		>
 			{children}
 		</StyledParagraph>
@@ -21,6 +29,7 @@ Paragraph.propTypes = {
 	fontWeight: PropTypes.string,
 	margins: PropTypes.string,
 	paddings: PropTypes.string,
+	textAlign: PropTypes.string,
 }
 
 Paragraph.defaultProps = {
@@ -28,5 +37,6 @@ Paragraph.defaultProps = {
 	fontWeight: "400",
 	margins: "0",
 	paddings: "0",
+	textAlign: "left",
 }
 export default Paragraph

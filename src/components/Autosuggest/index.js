@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 import Autosuggest from "react-autosuggest"
-import "./styles.css"
+// import "./styles.css"
+import StyledAutosuggest from "./styles.js"
 
 const renderSuggestion = suggestion => <div>{suggestion}</div>
 
@@ -40,14 +41,16 @@ const App = ({ fetchSuggestions, suggestionList, setNextCityName }) => {
 	}
 
 	return (
-		<Autosuggest
-			suggestions={suggestionList}
-			onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-			onSuggestionsClearRequested={onSuggestionsClearRequested}
-			getSuggestionValue={getSuggestionValue}
-			renderSuggestion={renderSuggestion}
-			inputProps={inputProps}
-		/>
+		<StyledAutosuggest>
+			<Autosuggest
+				suggestions={suggestionList}
+				onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+				onSuggestionsClearRequested={onSuggestionsClearRequested}
+				getSuggestionValue={getSuggestionValue}
+				renderSuggestion={renderSuggestion}
+				inputProps={inputProps}
+			/>
+		</StyledAutosuggest>
 	)
 }
 

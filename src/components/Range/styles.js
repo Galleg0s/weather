@@ -92,7 +92,10 @@ const StyledRange = styled.div`
 	}
 `
 const Wrapper = styled.div`
-	margin-left: auto !important;
+	margin-left: 20px !important;
+	@media (max-width: 768px) {
+		margin-left: 0 !important;
+	}
 `
 
 export { StyledRange, Wrapper }

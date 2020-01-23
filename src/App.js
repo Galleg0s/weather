@@ -48,22 +48,24 @@ class App extends Component {
 	render() {
 		return (
 			<Wrapper>
-				<Grid childrenMargins="0 0 30px 0">
-					<Autosuggest
-						suggestionList={this.props.suggestionList}
-						fetchSuggestions={this.props.fetchSuggestions}
-						setNextCityName={this.props.setNextCityName}
-					/>
-					<AddCityButton
-						nextCity={this.props.nextCity}
-						handleAddButtonClick={debounce(500, this.handleAddButtonClick)}
-					/>
+				<Grid childrenMargins="0 0 30px 0" justifyContent="space-between">
+					<Grid childrenMargins="0 0 30px 0">
+						<Autosuggest
+							suggestionList={this.props.suggestionList}
+							fetchSuggestions={this.props.fetchSuggestions}
+							setNextCityName={this.props.setNextCityName}
+						/>
+						<AddCityButton
+							nextCity={this.props.nextCity}
+							handleAddButtonClick={debounce(300, this.handleAddButtonClick)}
+						/>
+					</Grid>
 					<Range
 						temperature={this.props.temperature}
 						handleRangeChange={throttle(300, this.handleRangeChange)}
 					/>
 				</Grid>
-				<Grid childrenMargins="0 20px 20px 0">
+				<Grid childrenMargins="20px 20px 0 0">
 					<CardList
 						cities={this.props.cities}
 						handleDeleteButtonClick={this.handleDeleteButtonClick}
