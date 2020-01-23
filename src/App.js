@@ -7,6 +7,7 @@ import {
 	setTemperatureFilter,
 	fetchSuggestions,
 	setNextCityName,
+	setSuggestionList,
 } from "./redux/actions"
 
 import {
@@ -54,6 +55,7 @@ class App extends Component {
 							suggestionList={this.props.suggestionList}
 							fetchSuggestions={this.props.fetchSuggestions}
 							setNextCityName={this.props.setNextCityName}
+							setSuggestionList={setSuggestionList}
 						/>
 						<AddCityButton
 							nextCity={this.props.nextCity}
@@ -93,6 +95,7 @@ const mapDispatchToProps = dispatch => ({
 		dispatch(setTemperatureFilter(temperature)),
 	fetchSuggestions: suggestions => dispatch(fetchSuggestions(suggestions)),
 	setNextCityName: name => dispatch(setNextCityName(name)),
+	setSuggestionList: value => dispatch(setSuggestionList(value)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

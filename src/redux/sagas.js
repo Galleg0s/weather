@@ -1,7 +1,7 @@
 import { call, put, takeLatest, takeEvery } from "redux-saga/effects"
 import { FETCH_SUGGESTIONS, ADD_CITY, ADD_WEATHER_TO_CITY } from "./constants"
 import { setSuggestionList } from "./actions"
-import get from "./api"
+import get from "../api"
 
 function filterSuggestions(results) {
 	const duplicatedCities = results
@@ -17,16 +17,26 @@ function* fetchSuggestionsWatcher({ payload }) {
 	const geoApi = `http://geohelper.info/api/v1/cities?locale[lang]=ru&apiKey=elx4PqYowePswgCzpBNzXsRDQkTotRgh&filter[name]=${payload}`
 
 	try {
-		const { result } = yield call(get, geoApi)
-		const suggestionList = filterSuggestions(result)
-		yield put(setSuggestionList(suggestionList))
+		const inputValue = payload.trim().toLowerCase()
+		const inputLength = inputValue.length
+
+		if (inputLength === "" || inputLength < 2) {
+			yield put(setSuggestionList(""))
+		} else {
+			const { result } = yield call(get, geoApi)
+			const suggestionList = filterSuggestions(result)
+			yield put(setSuggestionList(suggestionList))
+		}
 	} catch (error) {
-		yield put({ type: "FAIL_TO_FETCH", error })
+		yield put({
+			type: "FAIL_TO_FETCH",
+			payload: "Не удалось получить данные от сервиса geohelper",
+		})
 	}
 }
 
 function* addCityWatcher({ payload }) {
-	const weatherApi = `http://api.weatherbit.io/v2.0/current/?key=36784d296fcf46f39350949f826617dc&city=${payload}&country=RU`
+	const weatherApi = `https://api.weatherbit.io/v2.0/current/?key=36784d296fcf46f39350949f826617dc&city=${payload}&country=RU`
 
 	try {
 		const { data } = yield call(get, weatherApi)
@@ -45,8 +55,10 @@ function* addCityWatcher({ payload }) {
 			payload: { name: payload, ...cityWeather },
 		})
 	} catch (error) {
-		// yield put({ type: "FAIL_TO_FETCH", error })
-		// попробуйте выбрать другой вариант
+		yield put({
+			type: "FAIL_TO_FETCH",
+			payload: "Не удалось получить данные от сервиса weatherbit",
+		})
 	}
 }
 

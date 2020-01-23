@@ -6,27 +6,24 @@ import StyledAutosuggest from "./styles.js"
 
 const renderSuggestion = suggestion => <div>{suggestion}</div>
 
-const App = ({ fetchSuggestions, suggestionList, setNextCityName }) => {
+const App = ({
+	fetchSuggestions,
+	suggestionList,
+	setNextCityName,
+	setSuggestionList,
+}) => {
 	const [value, setValue] = useState("")
-	const [suggestions, setSuggestions] = useState([])
 
 	const onChange = (event, { newValue }) => {
 		setValue(newValue)
 	}
 
 	const onSuggestionsFetchRequested = ({ value }) => {
-		const inputValue = value.trim().toLowerCase()
-		const inputLength = inputValue.length
-
-		if (inputLength === "" || inputLength < 2) {
-			return []
-		}
-
-		fetchSuggestions(inputValue)
+		fetchSuggestions(value)
 	}
 
 	const onSuggestionsClearRequested = () => {
-		setSuggestions([])
+		setSuggestionList("")
 	}
 
 	const getSuggestionValue = suggestion => {
@@ -58,6 +55,7 @@ App.propTypes = {
 	fetchSuggestions: PropTypes.func.isRequired,
 	suggestionList: PropTypes.arrayOf(PropTypes.string).isRequired,
 	setNextCityName: PropTypes.func.isRequired,
+	setSuggestionList: PropTypes.func.isRequired,
 }
 
 export default App
