@@ -69,7 +69,7 @@ class App extends Component {
 						handleRangeChange={throttle(300, this.handleRangeChange)}
 					/>
 				</Grid>
-				{this.props.Hint && (
+				{this.props.hint && (
 					<Grid>
 						<Hint message={this.props.hint} />
 					</Grid>
