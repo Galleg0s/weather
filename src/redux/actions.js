@@ -6,6 +6,7 @@ import {
 	SET_SUGGESTION_LIST,
 	SET_NEXT_CITY_NAME,
 	ADD_CITY_WITH_WEATHER,
+	SET_HINT,
 } from "./constants"
 
 export const addCity = name => {
@@ -54,5 +55,12 @@ export const addCityWithWeather = cityWithWeather => {
 	return {
 		type: ADD_CITY_WITH_WEATHER,
 		payload: cityWithWeather,
+	}
+}
+
+export const setHint = message => {
+	return {
+		type: SET_HINT,
+		payload: message,
 	}
 }

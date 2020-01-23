@@ -15,6 +15,7 @@ import {
 	getTemperature,
 	getSuggestionList,
 	getNextCity,
+	getHint,
 } from "./redux/selectors"
 
 import {
@@ -24,6 +25,7 @@ import {
 	Range,
 	Wrapper,
 	Grid,
+	Hint,
 } from "./components"
 
 import { throttle, debounce } from "throttle-debounce"
@@ -67,6 +69,11 @@ class App extends Component {
 						handleRangeChange={throttle(300, this.handleRangeChange)}
 					/>
 				</Grid>
+				{this.props.Hint && (
+					<Grid>
+						<Hint message={this.props.hint} />
+					</Grid>
+				)}
 				<Grid childrenMargins="20px 20px 0 0">
 					<CardList
 						cities={this.props.cities}
@@ -85,6 +92,7 @@ const mapStateToProps = state => {
 		temperature: getTemperature(state),
 		suggestionList: getSuggestionList(state),
 		nextCity: getNextCity(state),
+		hint: getHint(state),
 	}
 }
 

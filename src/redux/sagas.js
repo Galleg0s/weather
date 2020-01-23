@@ -1,5 +1,10 @@
 import { call, put, takeLatest, takeEvery } from "redux-saga/effects"
-import { FETCH_SUGGESTIONS, ADD_CITY, ADD_WEATHER_TO_CITY } from "./constants"
+import {
+	FETCH_SUGGESTIONS,
+	ADD_CITY,
+	ADD_WEATHER_TO_CITY,
+	SET_HINT,
+} from "./constants"
 import { setSuggestionList } from "./actions"
 import get from "../api"
 
@@ -21,7 +26,7 @@ function* fetchSuggestionsWatcher({ payload }) {
 		const inputLength = inputValue.length
 
 		if (inputLength === "" || inputLength < 2) {
-			yield put(setSuggestionList(""))
+			yield put(setSuggestionList([]))
 		} else {
 			const { result } = yield call(get, geoApi)
 			const suggestionList = filterSuggestions(result)
@@ -29,8 +34,9 @@ function* fetchSuggestionsWatcher({ payload }) {
 		}
 	} catch (error) {
 		yield put({
-			type: "FAIL_TO_FETCH",
-			payload: "Не удалось получить данные от сервиса geohelper",
+			type: SET_HINT,
+			payload:
+				"Не удалось получить данные от сервиса geohelper. Попробуйте повторить попытку позднее",
 		})
 	}
 }
@@ -56,8 +62,9 @@ function* addCityWatcher({ payload }) {
 		})
 	} catch (error) {
 		yield put({
-			type: "FAIL_TO_FETCH",
-			payload: "Не удалось получить данные от сервиса weatherbit",
+			type: SET_HINT,
+			payload:
+				"Не удалось получить данные от сервиса geohelper. Попробуйте повторить попытку позднее",
 		})
 	}
 }

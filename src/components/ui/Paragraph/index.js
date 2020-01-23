@@ -9,6 +9,7 @@ const Paragraph = ({
 	margins,
 	paddings,
 	textAlign,
+	color,
 }) => {
 	return (
 		<StyledParagraph
@@ -17,6 +18,7 @@ const Paragraph = ({
 			margins={margins}
 			paddings={paddings}
 			textAlign={textAlign}
+			color={color}
 		>
 			{children}
 		</StyledParagraph>
@@ -30,6 +32,7 @@ Paragraph.propTypes = {
 	margins: PropTypes.string,
 	paddings: PropTypes.string,
 	textAlign: PropTypes.string,
+	color: PropTypes.string,
 }
 
 Paragraph.defaultProps = {
@@ -38,5 +41,6 @@ Paragraph.defaultProps = {
 	margins: "0",
 	paddings: "0",
 	textAlign: "left",
+	color: "#2c2c2c",
 }
 export default Paragraph
