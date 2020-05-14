@@ -1,15 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-
-import {
-	addCity,
-	deleteCity,
-	setTemperatureFilter,
-	fetchSuggestions,
-	setNextCityName,
-	setSuggestionList,
-	setHint,
-} from "./redux/actions"
+import { bindActionCreators } from "redux"
+import * as actions from "./redux/actions"
 
 import {
 	getCities,
@@ -27,9 +19,11 @@ import {
 	Wrapper,
 	Grid,
 	Hint,
+	SwitchLanguage,
 } from "./components"
 
 import { throttle, debounce } from "throttle-debounce"
+import { withNamespaces } from "react-i18next"
 
 class App extends Component {
 	handleAddButtonClick = () => {
@@ -52,6 +46,10 @@ class App extends Component {
 	render() {
 		return (
 			<Wrapper>
+				<Grid childrenMargins="0 20px 20px 0">
+					<SwitchLanguage changeLanguage={this.props.changeLanguage} />
+				</Grid>
+
 				<Grid justifyContent="space-between">
 					<Grid childrenMargins="0 0 30px 0">
 						<Autosuggest
@@ -60,6 +58,7 @@ class App extends Component {
 							setNextCityName={this.props.setNextCityName}
 							setSuggestionList={this.props.setSuggestionList}
 							setHint={this.props.setHint}
+							title={this.props.t("Select a city")}
 						/>
 						<AddCityButton
 							nextCity={this.props.nextCity}
@@ -69,6 +68,7 @@ class App extends Component {
 					<Range
 						temperature={this.props.temperature}
 						handleRangeChange={throttle(300, this.handleRangeChange)}
+						title={this.props.t("Warmer than")}
 					/>
 				</Grid>
 				<Grid childrenMargins="20px 20px 0 0">
@@ -98,15 +98,31 @@ const mapStateToProps = state => {
 	}
 }
 
-const mapDispatchToProps = dispatch => ({
-	addCity: city => dispatch(addCity(city)),
-	deleteCity: name => dispatch(deleteCity(name)),
-	setTemperatureFilter: temperature =>
-		dispatch(setTemperatureFilter(temperature)),
-	fetchSuggestions: suggestions => dispatch(fetchSuggestions(suggestions)),
-	setNextCityName: name => dispatch(setNextCityName(name)),
-	setSuggestionList: value => dispatch(setSuggestionList(value)),
-	setHint: message => dispatch(setHint(message)),
-})
+const mapDispatchToProps = dispatch => {
+	const {
+		addCity,
+		deleteCity,
+		setTemperatureFilter,
+		fetchSuggestions,
+		setNextCityName,
+		setSuggestionList,
+		setHint,
+		changeLanguage,
+	} = bindActionCreators(actions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+	return {
+		addCity: city => addCity(city),
+		deleteCity: name => deleteCity(name),
+		setTemperatureFilter: temperature => setTemperatureFilter(temperature),
+		fetchSuggestions: suggestions => fetchSuggestions(suggestions),
+		setNextCityName: name => setNextCityName(name),
+		setSuggestionList: value => setSuggestionList(value),
+		setHint: message => setHint(message),
+		changeLanguage: language => changeLanguage(language),
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(withNamespaces()(App))

@@ -11,6 +11,7 @@ const App = ({
 	setNextCityName,
 	setSuggestionList,
 	setHint,
+	title,
 }) => {
 	const [value, setValue] = useState("")
 
@@ -24,7 +25,7 @@ const App = ({
 
 	const onSuggestionsClearRequested = () => {
 		setHint("")
-		setSuggestionList("")
+		setSuggestionList([])
 	}
 
 	const getSuggestionValue = suggestion => {
@@ -33,7 +34,7 @@ const App = ({
 	}
 
 	const inputProps = {
-		placeholder: "Введите город",
+		placeholder: title,
 		value,
 		onChange,
 	}
@@ -58,6 +59,7 @@ App.propTypes = {
 	setNextCityName: PropTypes.func.isRequired,
 	setSuggestionList: PropTypes.func.isRequired,
 	setHint: PropTypes.func.isRequired,
+	title: PropTypes.string.isRequired,
 }
 
 export default App

@@ -4,9 +4,11 @@ import {
 	ADD_CITY,
 	ADD_WEATHER_TO_CITY,
 	SET_HINT,
+	CHANGE_LANGUAGE,
 } from "./constants"
 import { setSuggestionList } from "./actions"
 import get from "../api"
+import i18n from "../i18n.js"
 
 function filterSuggestions(results) {
 	const duplicatedCities = results
@@ -69,9 +71,14 @@ function* addCityWatcher({ payload }) {
 	}
 }
 
+function* changeLanguageWatcher({ payload }) {
+	yield i18n.changeLanguage(payload)
+}
+
 function* rootSaga() {
 	yield takeLatest(FETCH_SUGGESTIONS, fetchSuggestionsWatcher)
 	yield takeEvery(ADD_CITY, addCityWatcher)
+	yield takeLatest(CHANGE_LANGUAGE, changeLanguageWatcher)
 }
 
 export default rootSaga

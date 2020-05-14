@@ -5,10 +5,10 @@ import { Paragraph } from "../ui"
 import { StyledRange, Wrapper } from "./styles"
 import formatTemperature from "../../utils"
 
-const Range = ({ temperature, handleRangeChange }) => {
+const Range = ({ temperature, handleRangeChange, title }) => {
 	return (
 		<Wrapper>
-			<Paragraph paddings="0 0 12px 0">Где сейчас теплее, чем</Paragraph>
+			<Paragraph paddings="0 0 12px 0">{title}</Paragraph>
 			<StyledRange>
 				<InputRange
 					step={1}
@@ -26,6 +26,7 @@ const Range = ({ temperature, handleRangeChange }) => {
 Range.propTypes = {
 	temperature: PropTypes.number.isRequired,
 	handleRangeChange: PropTypes.func.isRequired,
+	title: PropTypes.string.isRequired,
 }
 
 export default Range

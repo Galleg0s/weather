@@ -7,6 +7,7 @@ import {
 	SET_NEXT_CITY_NAME,
 	ADD_CITY_WITH_WEATHER,
 	SET_HINT,
+	CHANGE_LANGUAGE,
 } from "./constants"
 
 export const addCity = name => {
@@ -62,5 +63,12 @@ export const setHint = message => {
 	return {
 		type: SET_HINT,
 		payload: message,
+	}
+}
+
+export const changeLanguage = language => {
+	return {
+		type: CHANGE_LANGUAGE,
+		payload: language,
 	}
 }

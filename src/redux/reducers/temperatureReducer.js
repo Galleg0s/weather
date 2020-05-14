@@ -1,6 +1,6 @@
 import { SET_TEMPERATURE_FILTER } from "../constants"
 
-const initialState = -20
+const initialState = 3
 
 const temperatureReducer = (state = initialState, action) => {
 	switch (action.type) {

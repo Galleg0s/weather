@@ -4,6 +4,7 @@ import CardList from "./CardList"
 import Range from "./Range"
 import Wrapper from "./Wrapper"
 import { Grid, Paragraph, Hint } from "./ui"
+import SwitchLanguage from "./SwitchLanguage"
 
 export {
 	Autosuggest,
@@ -14,4 +15,5 @@ export {
 	Grid,
 	Paragraph,
 	Hint,
+	SwitchLanguage,
 }
