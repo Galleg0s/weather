@@ -41,6 +41,6 @@ Paragraph.defaultProps = {
 	margins: "0",
 	paddings: "0",
 	textAlign: "left",
-	color: "#2c2c2c",
+	color: "",
 }
 export default Paragraph

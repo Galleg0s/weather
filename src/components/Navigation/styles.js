@@ -8,7 +8,10 @@ const StyledList = styled.nav`
 		padding-right: 10px;
 		cursor: pointer;
 		text-decoration: none;
-		color: #2c2c2;
+		color: #2c2c2c;
+	}
+	& > a:hover {
+		color: #aaa;
 	}
 `
 

@@ -48,7 +48,6 @@ class App extends Component {
 				<Grid childrenMargins="0 0 20px 0">
 					<SwitchLanguage changeLanguage={this.props.changeLanguage} />
 				</Grid>
-
 				<Grid justifyContent="space-between" alignItems="flex-start">
 					<Grid childrenMargins="0 0 30px 0">
 						<Autosuggest

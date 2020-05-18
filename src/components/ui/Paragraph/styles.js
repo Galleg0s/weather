@@ -7,7 +7,7 @@ const Paragraph = styled.p`
 	margin: ${props => (props.margins ? props.margins : 0)};
 	padding: ${props => (props.paddings ? props.paddings : 0)};
 	text-align: ${props => (props.textAlign ? props.textAlign : "left")};
-	color: ${props => (props.color ? props.color : "#2c2c2c")};
+	color: ${props => (props.color ? props.color : "")};
 `
 
 export default Paragraph
