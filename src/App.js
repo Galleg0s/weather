@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import { Weather, News } from "./components/Pages"
 import Navigation from "./components/Navigation"
+import Login from "./components/Login"
 import { Paragraph, Wrapper, Grid } from "./components/ui"
 import { SwitchLanguage } from "./components"
 import * as actions from "./redux/actions"
@@ -15,6 +16,7 @@ const App = ({ changeLanguage, t }) => {
 	return (
 		<Wrapper>
 			<Router>
+				<Route path="/login" component={Login} />
 				<Grid childrenMargins="0 0 20px 0" justifyContent="space-between">
 					<Navigation path="/" t={t} />
 					<SwitchLanguage changeLanguage={changeLanguage} />

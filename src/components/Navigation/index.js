@@ -3,24 +3,22 @@ import { NavLink } from "react-router-dom"
 import { Paragraph } from "../ui"
 import StyledList from "./styles.js"
 
+const links = [
+	{ title: "Main", path: "/" },
+	{ title: "Weather", path: "/weather" },
+	{ title: "News", path: "/news" },
+]
+
 const Navigation = ({ t }) => {
 	return (
 		<StyledList>
-			<NavLink to="/">
-				<Paragraph fontSize="22px" fontWeight="400" textAlign="center">
-					{t("Main")}
-				</Paragraph>
-			</NavLink>
-			<NavLink to="/weather">
-				<Paragraph fontSize="22px" fontWeight="400" textAlign="center">
-					{t("Weather")}
-				</Paragraph>
-			</NavLink>
-			<NavLink to="/news">
-				<Paragraph fontSize="22px" fontWeight="400" textAlign="center">
-					{t("News")}
-				</Paragraph>
-			</NavLink>
+			{links.map(({ title, path }) => (
+				<NavLink to={path}>
+					<Paragraph fontSize="22px" fontWeight="400" textAlign="center">
+						{t(title)}
+					</Paragraph>
+				</NavLink>
+			))}
 		</StyledList>
 	)
 }
