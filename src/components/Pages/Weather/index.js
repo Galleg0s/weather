@@ -45,9 +45,6 @@ class App extends Component {
 	render() {
 		return (
 			<>
-				<Grid childrenMargins="0 0 20px 0">
-					<SwitchLanguage changeLanguage={this.props.changeLanguage} />
-				</Grid>
 				<Grid justifyContent="space-between" alignItems="flex-start">
 					<Grid childrenMargins="0 0 30px 0">
 						<Autosuggest
@@ -105,7 +102,6 @@ const mapDispatchToProps = dispatch => {
 		setNextCityName,
 		setSuggestionList,
 		setHint,
-		changeLanguage,
 	} = bindActionCreators(actions, dispatch)
 
 	return {
@@ -116,7 +112,6 @@ const mapDispatchToProps = dispatch => {
 		setNextCityName: name => setNextCityName(name),
 		setSuggestionList: value => setSuggestionList(value),
 		setHint: message => setHint(message),
-		changeLanguage: language => changeLanguage(language),
 	}
 }
 

@@ -3,7 +3,7 @@ import { Button } from "../ui"
 
 const SwitchLanguage = ({ changeLanguage }) => {
 	return (
-		<>
+		<div>
 			<Button
 				type="button"
 				value="ru"
@@ -18,7 +18,7 @@ const SwitchLanguage = ({ changeLanguage }) => {
 			>
 				en
 			</Button>
-		</>
+		</div>
 	)
 }
 
