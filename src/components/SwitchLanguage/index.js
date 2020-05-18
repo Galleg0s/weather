@@ -1,23 +1,23 @@
 import React from "react"
-import StyledButton from "./styles"
+import { Button } from "../ui"
 
 const SwitchLanguage = ({ changeLanguage }) => {
 	return (
 		<>
-			<button
+			<Button
 				type="button"
 				value="ru"
 				onClick={event => changeLanguage(event.target.value)}
 			>
 				ru
-			</button>
-			<button
+			</Button>
+			<Button
 				type="button"
 				value="en"
 				onClick={event => changeLanguage(event.target.value)}
 			>
 				en
-			</button>
+			</Button>
 		</>
 	)
 }

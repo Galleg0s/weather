@@ -1,5 +1,6 @@
 import Grid from "./Grid"
 import Paragraph from "./Paragraph"
 import Hint from "./Hint"
+import Button from "./Button"
 
-export { Grid, Paragraph, Hint }
+export { Grid, Paragraph, Hint, Button }
