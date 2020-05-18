@@ -85,7 +85,6 @@ const StyledRange = styled.div`
 	}
 `
 const Wrapper = styled.div`
-	margin-left: 20px !important;
 	@media (max-width: 768px) {
 		margin: 0 0 40px 0 !important;
 	}
