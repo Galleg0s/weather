@@ -8,6 +8,8 @@ import {
 	ADD_CITY_WITH_WEATHER,
 	SET_HINT,
 	CHANGE_LANGUAGE,
+	LOGIN,
+	LOGOUT,
 } from "./constants"
 
 export const addCity = name => {
@@ -70,5 +72,19 @@ export const changeLanguage = language => {
 	return {
 		type: CHANGE_LANGUAGE,
 		payload: language,
+	}
+}
+
+export const logIn = user => {
+	return {
+		type: LOGIN,
+		payload: user,
+	}
+}
+
+export const logOut = user => {
+	return {
+		type: LOGOUT,
+		payload: user,
 	}
 }

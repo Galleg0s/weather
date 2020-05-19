@@ -3,3 +3,4 @@ export const getTemperature = state => state.temperature
 export const getSuggestionList = state => state.suggestions.suggestionList
 export const getNextCity = state => state.nextCity
 export const getHint = state => state.hint
+export const getUser = state => state.user[0]

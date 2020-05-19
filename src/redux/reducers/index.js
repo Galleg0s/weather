@@ -1,16 +1,18 @@
 import { combineReducers } from "redux"
 import temperatureReducer from "./temperatureReducer"
 import citiesReducer from "./citiesReducer"
-import suggestionsReduser from "./suggestionsReduser"
-import nextCityReduser from "./nextCityReduser"
-import hintReduser from "./hintReduser"
+import suggestionsReducer from "./suggestionsReducer"
+import nextCityReducer from "./nextCityReducer"
+import hintReducer from "./hintReducer"
+import userReducer from "./userReducer"
 
 const rootReducer = combineReducers({
 	temperature: temperatureReducer,
 	cities: citiesReducer,
-	suggestions: suggestionsReduser,
-	nextCity: nextCityReduser,
-	hint: hintReduser,
+	suggestions: suggestionsReducer,
+	nextCity: nextCityReducer,
+	hint: hintReducer,
+	user: userReducer,
 })
 
 export default rootReducer

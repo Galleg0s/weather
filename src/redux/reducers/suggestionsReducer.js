@@ -5,7 +5,7 @@ const initialState = {
 	fetchedValue: "",
 }
 
-const suggestionListReduser = (state = initialState, action) => {
+const suggestionsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case FETCH_SUGGESTIONS:
 			return {
@@ -22,4 +22,4 @@ const suggestionListReduser = (state = initialState, action) => {
 	}
 }
 
-export default suggestionListReduser
+export default suggestionsReducer

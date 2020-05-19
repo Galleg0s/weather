@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { Button } from "../ui"
 
 const SwitchLanguage = ({ changeLanguage }) => {
@@ -22,4 +23,7 @@ const SwitchLanguage = ({ changeLanguage }) => {
 	)
 }
 
+SwitchLanguage.propTypes = {
+	changeLanguage: PropTypes.func.isRequired,
+}
 export default SwitchLanguage

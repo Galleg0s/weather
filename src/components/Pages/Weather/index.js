@@ -11,15 +11,7 @@ import {
 	getHint,
 } from "../../../redux/selectors"
 
-import {
-	Autosuggest,
-	AddCityButton,
-	CardList,
-	Range,
-	Grid,
-	Hint,
-	SwitchLanguage,
-} from "../.."
+import { Autosuggest, AddCityButton, CardList, Range, Grid, Hint } from "../.."
 
 import { throttle, debounce } from "throttle-debounce"
 import { withNamespaces } from "react-i18next"

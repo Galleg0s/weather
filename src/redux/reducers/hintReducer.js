@@ -2,7 +2,7 @@ import { SET_HINT } from "../constants"
 
 const initialState = ""
 
-const hintReduser = (state = initialState, action) => {
+const hintReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_HINT: {
 			return action.payload
@@ -12,4 +12,4 @@ const hintReduser = (state = initialState, action) => {
 	}
 }
 
-export default hintReduser
+export default hintReducer

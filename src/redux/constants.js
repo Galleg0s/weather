@@ -15,3 +15,6 @@ export const ADD_WEATHER_TO_CITY = "ADD_WEATHER_TO_CITY"
 export const SET_HINT = "SET_HINT"
 
 export const CHANGE_LANGUAGE = "CHANGE_LANGUAGE"
+
+export const LOGIN = "LOGIN"
+export const LOGOUT = "LOGOUT"
