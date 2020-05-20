@@ -1,9 +1,12 @@
 import React, { useState } from "react"
 
+import { Redirect } from "react-router-dom"
+
 const Login = ({ logIn }) => {
 	const [state, setState] = useState({ login: "", password: "" })
 
 	const { login, password } = state
+
 	return (
 		<form>
 			<p>Войдите, чтобы увидеть содержимое сайта:</p>

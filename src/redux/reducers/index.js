@@ -4,7 +4,7 @@ import citiesReducer from "./citiesReducer"
 import suggestionsReducer from "./suggestionsReducer"
 import nextCityReducer from "./nextCityReducer"
 import hintReducer from "./hintReducer"
-import userReducer from "./userReducer"
+import usersReducer from "./usersReducer"
 
 const rootReducer = combineReducers({
 	temperature: temperatureReducer,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
 	suggestions: suggestionsReducer,
 	nextCity: nextCityReducer,
 	hint: hintReducer,
-	user: userReducer,
+	users: usersReducer,
 })
 
 export default rootReducer
