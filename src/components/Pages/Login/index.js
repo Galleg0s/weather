@@ -1,7 +1,5 @@
 import React, { useState } from "react"
 
-import { Redirect } from "react-router-dom"
-
 const Login = ({ logIn }) => {
 	const [state, setState] = useState({ login: "", password: "" })
 
@@ -30,6 +28,7 @@ const Login = ({ logIn }) => {
 				type="submit"
 				onClick={e => {
 					e.preventDefault()
+
 					logIn({
 						login,
 						password,

@@ -10,6 +10,7 @@ import {
 	CHANGE_LANGUAGE,
 	LOGIN,
 	LOGOUT,
+	VALIDATE,
 } from "./constants"
 
 export const addCity = name => {
@@ -75,15 +76,22 @@ export const changeLanguage = language => {
 	}
 }
 
-export const logIn = user => {
+export const logIn = credentials => {
 	return {
 		type: LOGIN,
-		payload: user,
+		payload: credentials,
 	}
 }
 
 export const logOut = () => {
 	return {
 		type: LOGOUT,
+	}
+}
+
+export const validate = user => {
+	return {
+		type: VALIDATE,
+		payload: user,
 	}
 }

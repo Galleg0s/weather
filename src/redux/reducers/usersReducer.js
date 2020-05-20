@@ -12,12 +12,27 @@ const initialState = {
 
 const userReduser = (state = initialState, action) => {
 	switch (action.type) {
-		case LOGIN:
 		case LOGOUT: {
 			return {
 				...state,
-				isLoggedIn: !state.isLoggedIn,
+				isLoggedIn: false,
 			}
+		}
+		case LOGIN: {
+			const index = state.list.findIndex(user => {
+				return (
+					user.login === action.payload.login &&
+					user.password === action.payload.password
+				)
+			})
+
+			if (index !== -1) {
+				return {
+					...state,
+					isLoggedIn: true,
+				}
+			}
+			return state
 		}
 		default:
 			return state

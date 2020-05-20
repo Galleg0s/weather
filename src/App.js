@@ -14,7 +14,7 @@ import { getUserList, getUserStatus } from "./redux/selectors"
 
 // сделать t через контекст
 
-const App = ({ changeLanguage, t, list, logIn, logOut, isLoggedIn }) => {
+const App = ({ changeLanguage, t, userList, logIn, logOut, isLoggedIn }) => {
 	return (
 		<Wrapper>
 			<Router>
@@ -31,7 +31,7 @@ const App = ({ changeLanguage, t, list, logIn, logOut, isLoggedIn }) => {
 							exact
 							render={() => (
 								<Paragraph fontSize="30px" fontWeight="400">
-									{t("Welcome")}, Пользователь!
+									{t("Welcome")}, {userList[0].login}!
 								</Paragraph>
 							)}
 						/>
@@ -52,13 +52,13 @@ const App = ({ changeLanguage, t, list, logIn, logOut, isLoggedIn }) => {
 
 const mapStateToProps = state => {
 	return {
-		list: getUserList(state),
+		userList: getUserList(state),
 		isLoggedIn: getUserStatus(state),
 	}
 }
 
 const mapDispatchToProps = dispatch => {
-	const { changeLanguage, logIn, logOut } = bindActionCreators(
+	const { changeLanguage, logIn, logOut, validate } = bindActionCreators(
 		actions,
 		dispatch
 	)
