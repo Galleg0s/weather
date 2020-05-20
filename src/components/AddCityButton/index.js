@@ -4,7 +4,7 @@ import { Paragraph, Button } from "../ui"
 
 const AddCardButton = ({ handleAddButtonClick }) => {
 	return (
-		<Button onClick={handleAddButtonClick}>
+		<Button onClick={handleAddButtonClick} value="city">
 			<Paragraph fontSize="35px" fontWeight="300" textAlign="center">
 				+
 			</Paragraph>

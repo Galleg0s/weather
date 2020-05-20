@@ -30,19 +30,20 @@ const App = ({ changeLanguage, t, user, logIn, logOut }) => {
 							<SwitchLanguage changeLanguage={changeLanguage} />
 							<LogOut logOut={() => logOut(user)} />
 						</Grid>
-
-						<Route
-							path="/"
-							exact
-							render={() => (
-								<Paragraph fontSize="35px" fontWeight="400">
-									{t("Welcome")}, Пользователь!
-								</Paragraph>
-							)}
-						/>
-						<Route path="/weather" component={Weather} />
-						<Route path="/news" component={News} />
-						{/* <Route component={NotFound} /> */}
+						<Switch>
+							<Route
+								path="/"
+								exact
+								render={() => (
+									<Paragraph fontSize="30px" fontWeight="400">
+										{t("Welcome")}, {user.login}!
+									</Paragraph>
+								)}
+							/>
+							<Route path="/weather" component={Weather} />
+							<Route path="/news" component={News} />
+						</Switch>
+						<Redirect exact from="/login" to="/" />
 					</>
 				) : (
 					<>
@@ -54,7 +55,7 @@ const App = ({ changeLanguage, t, user, logIn, logOut }) => {
 						/>
 					</>
 				)}
-				{/* <Redirect exact from="/" to="/login" /> */}
+				<Redirect exact from="/" to="/login" />
 			</Router>
 		</Wrapper>
 	)
