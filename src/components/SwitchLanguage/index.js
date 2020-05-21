@@ -6,7 +6,7 @@ const SwitchLanguage = ({ changeLanguage }) => {
 	const languages = ["en", "ru"]
 
 	return (
-		<Grid item>
+		<>
 			{languages.map(language => {
 				return (
 					<Button
@@ -21,7 +21,7 @@ const SwitchLanguage = ({ changeLanguage }) => {
 					</Button>
 				)
 			})}
-		</Grid>
+		</>
 	)
 }
 

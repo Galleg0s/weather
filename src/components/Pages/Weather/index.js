@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import * as actions from "../../../redux/actions"
 import { withTranslation } from "react-i18next"
-
+import { Grid, Typography } from "@material-ui/core"
 import {
 	getCities,
 	getTemperature,
@@ -35,34 +35,39 @@ class App extends Component {
 
 	render() {
 		return (
-			<>
-				<Autosuggest
-					suggestionList={this.props.suggestionList}
-					fetchSuggestions={this.props.fetchSuggestions}
-					setNextCityName={this.props.setNextCityName}
-					setSuggestionList={this.props.setSuggestionList}
-					setHint={this.props.setHint}
-					title={this.props.t("Select a city")}
-				/>
-				<AddCityButton
-					nextCity={this.props.nextCity}
-					handleAddButtonClick={debounce(300, this.handleAddButtonClick)}
-				/>
-
-				<Range
-					temperature={this.props.temperature}
-					handleRangeChange={throttle(300, this.handleRangeChange)}
-					title={this.props.t("Warmer than")}
-				/>
-
+			<Grid container>
+				<Grid item lg={12} container>
+					<Grid item lg={7}>
+						<Autosuggest
+							suggestionList={this.props.suggestionList}
+							fetchSuggestions={this.props.fetchSuggestions}
+							setNextCityName={this.props.setNextCityName}
+							setSuggestionList={this.props.setSuggestionList}
+							setHint={this.props.setHint}
+							title={this.props.t("Select a city")}
+						/>
+					</Grid>
+					<Grid item lg={1}>
+						<AddCityButton
+							nextCity={this.props.nextCity}
+							handleAddButtonClick={debounce(300, this.handleAddButtonClick)}
+						/>
+					</Grid>
+					<Grid item lg={4}>
+						<Range
+							temperature={this.props.temperature}
+							handleRangeChange={throttle(300, this.handleRangeChange)}
+							title={this.props.t("Warmer than")}
+						/>
+					</Grid>
+				</Grid>
 				<CardList
 					cities={this.props.cities}
 					handleDeleteButtonClick={this.handleDeleteButtonClick}
 					temperatureFilter={this.props.temperature}
 				/>
-
-				{this.props.hint && <p>{this.props.hint}</p>}
-			</>
+				{this.props.hint && <Typography>{this.props.hint}</Typography>}
+			</Grid>
 		)
 	}
 }

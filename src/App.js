@@ -14,7 +14,7 @@ import { getUserList, getUserStatus } from "./redux/selectors"
 // сделать t через контекст
 const useStyles = makeStyles({
 	containerCls: {
-		marginTop: "50px",
+		marginTop: "30px",
 	},
 })
 
@@ -23,17 +23,21 @@ const App = ({ changeLanguage, userList, logIn, logOut, isLoggedIn }) => {
 	const [t] = useTranslation()
 
 	return (
-		<Container className={containerCls}>
-			<Grid container item xs={12}>
-				<Grid item container lg={10} spacing={8}>
+		<Container className={containerCls} maxWidth="md">
+			<Grid container item xs={12} spacing={2}>
+				<Grid item lg={10} />
+				<Grid item lg={2}>
+					<SwitchLanguage changeLanguage={changeLanguage} />
+				</Grid>
+				<Grid item container lg={12} spacing={2}>
 					<Router>
 						{isLoggedIn ? (
 							<>
 								<Grid item container lg={12} alignItems="baseline">
-									<Grid item container spacing={2} lg={4}>
+									<Grid item container spacing={2} lg={11}>
 										<Navigation path="/" />
 									</Grid>
-									<Grid item lg={8}>
+									<Grid item lg={1}>
 										<LogOut logOut={logOut} />
 									</Grid>
 								</Grid>
@@ -61,8 +65,8 @@ const App = ({ changeLanguage, userList, logIn, logOut, isLoggedIn }) => {
 									path="/login"
 									render={() => {
 										return (
-											<Grid item container justify="center">
-												<Grid item lg={4}>
+											<Grid container justify="center">
+												<Grid item lg={6}>
 													<Login logIn={logIn} />
 												</Grid>
 											</Grid>
@@ -72,9 +76,6 @@ const App = ({ changeLanguage, userList, logIn, logOut, isLoggedIn }) => {
 							</>
 						)}
 					</Router>
-				</Grid>
-				<Grid item lg={2}>
-					<SwitchLanguage changeLanguage={changeLanguage} />
 				</Grid>
 			</Grid>
 		</Container>

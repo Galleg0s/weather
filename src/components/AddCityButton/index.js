@@ -1,14 +1,16 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Button } from "@material-ui/core"
-import { Paragraph } from "../ui"
+import { Button, Typography } from "@material-ui/core"
 
 const AddCardButton = ({ handleAddButtonClick }) => {
 	return (
-		<Button color="primary" marginsonClick={handleAddButtonClick} value="city">
-			<Paragraph fontSize="35px" fontWeight="300" textAlign="center">
-				+
-			</Paragraph>
+		<Button
+			variant="outlined"
+			color="primary"
+			onClick={handleAddButtonClick}
+			value="city"
+		>
+			<Typography>+</Typography>
 		</Button>
 	)
 }
