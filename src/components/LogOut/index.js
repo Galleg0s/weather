@@ -1,10 +1,11 @@
 import React from "react"
+import { Button } from "../ui"
 
-const Logout = ({ logOut, user }) => {
+const Logout = ({ logOut }) => {
 	return (
-		<button type="button" onClick={logOut}>
+		<Button value="Выйти" onClick={logOut}>
 			Выйти
-		</button>
+		</Button>
 	)
 }
 

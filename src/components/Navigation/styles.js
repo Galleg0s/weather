@@ -1,8 +1,7 @@
 import styled from "styled-components"
 
-const StyledList = styled.nav`
+const StyledNav = styled.nav`
 	display: flex;
-	margin-bottom: 30px;
 	padding: 0;
 	& > a {
 		padding-right: 10px;
@@ -15,4 +14,4 @@ const StyledList = styled.nav`
 	}
 `
 
-export default StyledList
+export default StyledNav

@@ -6,7 +6,6 @@ import { bindActionCreators } from "redux"
 import { Weather, News } from "./components/Pages"
 import Navigation from "./components/Navigation"
 import Login from "./components/Pages/Login"
-import NotFound from "./components/Pages/NotFound"
 import { Paragraph, Wrapper, Grid } from "./components/ui"
 import { SwitchLanguage, LogOut } from "./components"
 import * as actions from "./redux/actions"
@@ -16,11 +15,15 @@ import { getUserList, getUserStatus } from "./redux/selectors"
 
 const App = ({ changeLanguage, t, userList, logIn, logOut, isLoggedIn }) => {
 	return (
-		<Wrapper>
+		<Wrapper maxWidth="1024px" paddings="0 20px">
 			<Router>
 				{isLoggedIn ? (
 					<>
-						<Grid childrenMargins="0 0 20px 0" justifyContent="space-between">
+						<Grid
+							childrenMargins="0 0 20px 0"
+							justifyContent="space-between"
+							alignItems="center"
+						>
 							<Navigation path="/" t={t} />
 							<SwitchLanguage changeLanguage={changeLanguage} />
 							<LogOut logOut={logOut} />
@@ -30,7 +33,7 @@ const App = ({ changeLanguage, t, userList, logIn, logOut, isLoggedIn }) => {
 							path="/"
 							exact
 							render={() => (
-								<Paragraph fontSize="30px" fontWeight="400">
+								<Paragraph fontSize="20px" fontWeight="400">
 									{t("Welcome")}, {userList[0].login}!
 								</Paragraph>
 							)}
@@ -58,7 +61,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-	const { changeLanguage, logIn, logOut, validate } = bindActionCreators(
+	const { changeLanguage, logIn, logOut } = bindActionCreators(
 		actions,
 		dispatch
 	)

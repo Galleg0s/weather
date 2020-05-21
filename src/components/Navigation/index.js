@@ -2,7 +2,7 @@ import React from "react"
 import { NavLink } from "react-router-dom"
 import PropTypes from "prop-types"
 import { Paragraph } from "../ui"
-import StyledList from "./styles"
+import StyledNav from "./styles"
 
 const links = [
 	{ title: "Main", path: "/" },
@@ -12,7 +12,7 @@ const links = [
 
 const Navigation = ({ t }) => {
 	return (
-		<StyledList>
+		<StyledNav>
 			{links.map(({ title, path }) => (
 				<NavLink to={path} key={title}>
 					<Paragraph fontSize="22px" fontWeight="400" textAlign="center">
@@ -20,7 +20,7 @@ const Navigation = ({ t }) => {
 					</Paragraph>
 				</NavLink>
 			))}
-		</StyledList>
+		</StyledNav>
 	)
 }
 
