@@ -37,39 +37,32 @@ class App extends Component {
 	render() {
 		return (
 			<>
-				<Grid justifyContent="space-between" alignItems="flex-start">
-					<Grid childrenMargins="0 0 30px 0">
-						<Autosuggest
-							suggestionList={this.props.suggestionList}
-							fetchSuggestions={this.props.fetchSuggestions}
-							setNextCityName={this.props.setNextCityName}
-							setSuggestionList={this.props.setSuggestionList}
-							setHint={this.props.setHint}
-							title={this.props.t("Select a city")}
-						/>
-						<AddCityButton
-							nextCity={this.props.nextCity}
-							handleAddButtonClick={debounce(300, this.handleAddButtonClick)}
-						/>
-					</Grid>
-					<Range
-						temperature={this.props.temperature}
-						handleRangeChange={throttle(300, this.handleRangeChange)}
-						title={this.props.t("Warmer than")}
-					/>
-				</Grid>
-				<Grid childrenMargins="20px 20px 0 0">
-					<CardList
-						cities={this.props.cities}
-						handleDeleteButtonClick={this.handleDeleteButtonClick}
-						temperatureFilter={this.props.temperature}
-					/>
-				</Grid>
-				{this.props.hint && (
-					<Grid>
-						<Hint message={this.props.hint} />
-					</Grid>
-				)}
+				<Autosuggest
+					suggestionList={this.props.suggestionList}
+					fetchSuggestions={this.props.fetchSuggestions}
+					setNextCityName={this.props.setNextCityName}
+					setSuggestionList={this.props.setSuggestionList}
+					setHint={this.props.setHint}
+					title={this.props.t("Select a city")}
+				/>
+				<AddCityButton
+					nextCity={this.props.nextCity}
+					handleAddButtonClick={debounce(300, this.handleAddButtonClick)}
+				/>
+
+				<Range
+					temperature={this.props.temperature}
+					handleRangeChange={throttle(300, this.handleRangeChange)}
+					title={this.props.t("Warmer than")}
+				/>
+
+				<CardList
+					cities={this.props.cities}
+					handleDeleteButtonClick={this.handleDeleteButtonClick}
+					temperatureFilter={this.props.temperature}
+				/>
+
+				{this.props.hint && <p>{this.props.hint}</p>}
 			</>
 		)
 	}

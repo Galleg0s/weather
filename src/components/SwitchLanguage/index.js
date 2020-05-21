@@ -1,19 +1,21 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Button, Grid } from "../ui"
+import { Button, Grid } from "@material-ui/core"
 
 const SwitchLanguage = ({ changeLanguage }) => {
 	const languages = ["en", "ru"]
 
 	return (
-		<Grid childrenMargins="0 10px 0 0">
+		<Grid item>
 			{languages.map(language => {
 				return (
 					<Button
 						key={language}
 						type="button"
 						value={language}
-						onClick={event => changeLanguage(event.target.value)}
+						onClick={event => {
+							changeLanguage(event.currentTarget.value)
+						}}
 					>
 						{language}
 					</Button>
