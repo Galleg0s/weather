@@ -22,35 +22,57 @@ const App = ({ changeLanguage, t, userList, logIn, logOut, isLoggedIn }) => {
 	const { containerCls } = useStyles()
 	return (
 		<Container className={containerCls}>
-			<Grid container item xs={12} justify="center">
-				<Grid item xs={12} lg={4}>
+			<Grid container item xs={12}>
+				<Grid item container lg={10} spacing={8}>
 					<Router>
 						{isLoggedIn ? (
 							<>
-								<Navigation path="/" t={t} />
-								<SwitchLanguage changeLanguage={changeLanguage} />
-								<LogOut logOut={logOut} />
+								<Grid item container lg={12} alignItems="baseline">
+									<Grid item container spacing={2} lg={4}>
+										<Navigation path="/" t={t} />
+									</Grid>
+									<Grid item lg={8}>
+										<LogOut logOut={logOut} />
+									</Grid>
+								</Grid>
 
-								<Route
-									path="/"
-									exact
-									render={() => (
-										<Typography variant="h2">
-											{t("Welcome")}, {userList[0].login}!
-										</Typography>
-									)}
-								/>
-								<Route path="/weather" component={Weather} />
-								<Route path="/news" component={News} />
-								<Redirect exact from="/login" to="/" />
+								<Grid item lg={12}>
+									<Route
+										path="/"
+										exact
+										render={() => (
+											<Typography variant="h6">
+												{t("Welcome")}, {userList[0].login}!
+											</Typography>
+										)}
+									/>
+
+									<Route path="/weather" component={Weather} />
+									<Route path="/news" component={News} />
+									<Redirect exact from="/login" to="/" />
+								</Grid>
 							</>
 						) : (
 							<>
 								<Redirect exact from="/" to="/login" />
-								<Route path="/login" render={() => <Login logIn={logIn} />} />
+								<Route
+									path="/login"
+									render={() => {
+										return (
+											<Grid item container justify="center">
+												<Grid item lg={4}>
+													<Login logIn={logIn} />
+												</Grid>
+											</Grid>
+										)
+									}}
+								/>
 							</>
 						)}
 					</Router>
+				</Grid>
+				<Grid item lg={2}>
+					<SwitchLanguage changeLanguage={changeLanguage} />
 				</Grid>
 			</Grid>
 		</Container>

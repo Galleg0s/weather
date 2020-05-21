@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button, Grid, TextField, Paper, Typography } from "@material-ui/core"
+import { Button, TextField, Typography } from "@material-ui/core"
 import PropTypes from "prop-types"
 
 const Login = ({ logIn }) => {

@@ -1,8 +1,7 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
 import PropTypes from "prop-types"
-import { Paragraph } from "../ui"
-import StyledNav from "./styles"
+import { Typography, Grid } from "@material-ui/core"
 
 const links = [
 	{ title: "Main", path: "/" },
@@ -12,15 +11,15 @@ const links = [
 
 const Navigation = ({ t }) => {
 	return (
-		<StyledNav>
+		<>
 			{links.map(({ title, path }) => (
-				<NavLink to={path} key={title}>
-					<Paragraph fontSize="22px" fontWeight="400" textAlign="center">
-						{t(title)}
-					</Paragraph>
-				</NavLink>
+				<Grid item>
+					<NavLink to={path} key={title}>
+						<Typography variant="button">{t(title)}</Typography>
+					</NavLink>
+				</Grid>
 			))}
-		</StyledNav>
+		</>
 	)
 }
 
