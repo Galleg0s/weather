@@ -1,10 +1,13 @@
 import React from "react"
-import { Button, Link } from "@material-ui/core"
+import { Button } from "@material-ui/core"
+import { useTranslation } from "react-i18next"
 
 const Logout = ({ logOut }) => {
+	const [t] = useTranslation()
+
 	return (
 		<Button value="Выйти" onClick={logOut}>
-			Выйти
+			{t("Logout")}
 		</Button>
 	)
 }

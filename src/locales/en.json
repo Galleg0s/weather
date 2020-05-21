@@ -5,5 +5,10 @@
   "Weather": "Weather",
   "News": "News",
   "Welcome": "Welcome",
-  "Logout": "Logout"
+  "Logout": "Logout",
+  "Login message": "Please log in to continue",
+  "Login helper": "between 2 and 50 characters",
+  "Login": "Login",
+  "Password": "Password",
+  "Log in": "Log in"
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import * as actions from "../../../redux/actions"
+import { withTranslation } from "react-i18next"
 
 import {
 	getCities,
@@ -11,10 +12,8 @@ import {
 	getHint,
 } from "../../../redux/selectors"
 
-import { Autosuggest, AddCityButton, CardList, Range, Grid, Hint } from "../.."
-
+import { Autosuggest, AddCityButton, CardList, Range } from "../.."
 import { throttle, debounce } from "throttle-debounce"
-import { withNamespaces } from "react-i18next"
 
 class App extends Component {
 	handleAddButtonClick = () => {
@@ -103,4 +102,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withNamespaces()(App))
+)(withTranslation()(App))

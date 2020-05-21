@@ -1,9 +1,9 @@
 import React from "react"
-import { withNamespaces } from "react-i18next"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core"
+import { useTranslation } from "react-i18next"
 import { Weather, News } from "./components/Pages"
 import Navigation from "./components/Navigation"
 import Login from "./components/Pages/Login"
@@ -18,8 +18,10 @@ const useStyles = makeStyles({
 	},
 })
 
-const App = ({ changeLanguage, t, userList, logIn, logOut, isLoggedIn }) => {
+const App = ({ changeLanguage, userList, logIn, logOut, isLoggedIn }) => {
 	const { containerCls } = useStyles()
+	const [t] = useTranslation()
+
 	return (
 		<Container className={containerCls}>
 			<Grid container item xs={12}>
@@ -29,7 +31,7 @@ const App = ({ changeLanguage, t, userList, logIn, logOut, isLoggedIn }) => {
 							<>
 								<Grid item container lg={12} alignItems="baseline">
 									<Grid item container spacing={2} lg={4}>
-										<Navigation path="/" t={t} />
+										<Navigation path="/" />
 									</Grid>
 									<Grid item lg={8}>
 										<LogOut logOut={logOut} />
@@ -99,7 +101,4 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withNamespaces()(App))
+export default connect(mapStateToProps, mapDispatchToProps)(App)

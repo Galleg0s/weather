@@ -1,31 +1,33 @@
 import React, { useState } from "react"
 import { Button, TextField, Typography } from "@material-ui/core"
 import PropTypes from "prop-types"
+import { useTranslation } from "react-i18next"
 
 const Login = ({ logIn }) => {
 	const [state, setState] = useState({ login: "", password: "" })
 
 	const { login, password } = state
+	const [t] = useTranslation()
 
 	return (
 		<>
 			<Typography variant="subtitle1" gutterBottom>
-				Войдите, чтобы увидеть содержимое сайта:
+				{t("Login message")}
 			</Typography>
 			<TextField
-				label="Логин"
+				label={t("Login")}
 				variant="outlined"
 				margin="normal"
-				helperText="Логин должен содержать от 2 до 50 символов"
+				helperText={t("Login helper")}
 				fullWidth
 				onChange={e => setState({ ...state, login: e.target.value })}
 			/>
 			<TextField
 				type="password"
-				label="Пароль"
+				label={t("Password")}
 				variant="outlined"
 				margin="normal"
-				helperText="Пароль должен содержать от 2 до 50 символов"
+				helperText={t("Login helper")}
 				fullWidth
 				onChange={e => setState({ ...state, password: e.target.value })}
 			/>
@@ -44,7 +46,7 @@ const Login = ({ logIn }) => {
 				}}
 				fullWidth
 			>
-				Войти
+				{t("Log in")}
 			</Button>
 		</>
 	)
