@@ -12,7 +12,12 @@ import {
 	getHint,
 } from "../../../redux/selectors"
 
-import { Autosuggest, AddCityButton, CardList, Range } from "../.."
+import {
+	Autocomplete,
+	AddCityButton,
+	CardList,
+	Range,
+} from "../.."
 import { throttle, debounce } from "throttle-debounce"
 
 class App extends Component {
@@ -38,13 +43,12 @@ class App extends Component {
 			<Grid container>
 				<Grid item lg={12} container>
 					<Grid item lg={7}>
-						<Autosuggest
+						<Autocomplete
 							suggestionList={this.props.suggestionList}
 							fetchSuggestions={this.props.fetchSuggestions}
 							setNextCityName={this.props.setNextCityName}
 							setSuggestionList={this.props.setSuggestionList}
 							setHint={this.props.setHint}
-							title={this.props.t("Select a city")}
 						/>
 					</Grid>
 					<Grid item lg={1}>

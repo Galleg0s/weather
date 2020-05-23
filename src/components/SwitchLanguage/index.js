@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Button, Grid } from "@material-ui/core"
+import { Button } from "@material-ui/core"
 
 const SwitchLanguage = ({ changeLanguage }) => {
 	const languages = ["en", "ru"]

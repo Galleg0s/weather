@@ -11,7 +11,6 @@ import { SwitchLanguage, LogOut } from "./components"
 import * as actions from "./redux/actions"
 import { getUserList, getUserStatus } from "./redux/selectors"
 
-// сделать t через контекст
 const useStyles = makeStyles({
 	containerCls: {
 		marginTop: "30px",
@@ -23,62 +22,64 @@ const App = ({ changeLanguage, userList, logIn, logOut, isLoggedIn }) => {
 	const [t] = useTranslation()
 
 	return (
-		<Container className={containerCls} maxWidth="md">
-			<Grid container item xs={12} spacing={2}>
-				<Grid item lg={10} />
-				<Grid item lg={2}>
-					<SwitchLanguage changeLanguage={changeLanguage} />
-				</Grid>
-				<Grid item container lg={12} spacing={2}>
-					<Router>
-						{isLoggedIn ? (
-							<>
-								<Grid item container lg={12} alignItems="baseline">
-									<Grid item container spacing={2} lg={11}>
-										<Navigation path="/" />
+		<>
+			<Container className={containerCls} maxWidth="md">
+				<Grid container item xs={12} spacing={2}>
+					<Grid item lg={10} />
+					<Grid item lg={2}>
+						<SwitchLanguage changeLanguage={changeLanguage} />
+					</Grid>
+					<Grid item container lg={12} spacing={2}>
+						<Router>
+							{isLoggedIn ? (
+								<>
+									<Grid item container lg={12} alignItems="baseline">
+										<Grid item container spacing={2} lg={11}>
+											<Navigation path="/" />
+										</Grid>
+										<Grid item lg={1}>
+											<LogOut logOut={logOut} />
+										</Grid>
 									</Grid>
-									<Grid item lg={1}>
-										<LogOut logOut={logOut} />
-									</Grid>
-								</Grid>
 
-								<Grid item lg={12}>
+									<Grid item lg={12}>
+										<Route
+											path="/"
+											exact
+											render={() => (
+												<Typography variant="h6">
+													{t("Welcome")}, {userList[0].login}!
+												</Typography>
+											)}
+										/>
+
+										<Route path="/weather" component={Weather} />
+										<Route path="/news" component={News} />
+										<Redirect exact from="/login" to="/" />
+									</Grid>
+								</>
+							) : (
+								<>
+									<Redirect exact from="/" to="/login" />
 									<Route
-										path="/"
-										exact
-										render={() => (
-											<Typography variant="h6">
-												{t("Welcome")}, {userList[0].login}!
-											</Typography>
-										)}
-									/>
-
-									<Route path="/weather" component={Weather} />
-									<Route path="/news" component={News} />
-									<Redirect exact from="/login" to="/" />
-								</Grid>
-							</>
-						) : (
-							<>
-								<Redirect exact from="/" to="/login" />
-								<Route
-									path="/login"
-									render={() => {
-										return (
-											<Grid container justify="center">
-												<Grid item lg={6}>
-													<Login logIn={logIn} />
+										path="/login"
+										render={() => {
+											return (
+												<Grid container justify="center">
+													<Grid item lg={6}>
+														<Login logIn={logIn} />
+													</Grid>
 												</Grid>
-											</Grid>
-										)
-									}}
-								/>
-							</>
-						)}
-					</Router>
+											)
+										}}
+									/>
+								</>
+							)}
+						</Router>
+					</Grid>
 				</Grid>
-			</Grid>
-		</Container>
+			</Container>
+		</>
 	)
 }
 

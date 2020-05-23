@@ -8,12 +8,15 @@ import {
 } from "./constants"
 import { setSuggestionList } from "./actions"
 import get from "../api"
-import i18n from "../i18n.js"
+import i18n from "../i18n"
 
 function filterSuggestions(results) {
 	const duplicatedCities = results
 		.filter(
-			result => result.localityType && result.localityType.code === "city-city"
+			({ localityType }) =>
+				(localityType && localityType.code === "city-city") ||
+				localityType.code === "city-village" ||
+				localityType.code === "city-posyolok"
 		)
 		.map(result => result.name)
 

@@ -1,8 +1,8 @@
-import Autosuggest from "./Autosuggest"
 import AddCityButton from "./AddCityButton"
 import CardList from "./CardList"
 import Range from "./Range"
 import SwitchLanguage from "./SwitchLanguage"
 import LogOut from "./LogOut"
+import Autocomplete from "./Autocomplete"
 
-export { Autosuggest, AddCityButton, CardList, Range, SwitchLanguage, LogOut }
+export { AddCityButton, CardList, Range, SwitchLanguage, LogOut, Autocomplete }
