@@ -5,9 +5,8 @@ import Card from "../Card"
 
 const CardList = ({ cities, onButtonClick, temperatureFilter }) => {
 	return cities.map(city => (
-		<Grid item lg={3}>
+		<Grid item lg={3} key={`${city.name}`}>
 			<Card
-				key={`${city.name}`}
 				name={city.name}
 				wind={city.wind}
 				pressure={city.pressure}

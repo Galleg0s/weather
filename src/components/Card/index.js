@@ -23,7 +23,7 @@ const Card = ({
 				<Paragraph fontSize="16px" fontWeight="bold" paddings="0 0 12px 0">
 					{name}
 				</Paragraph>
-				<div alignItems="center">
+				<div>
 					<img
 						width="50"
 						height="50"
