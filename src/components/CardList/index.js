@@ -1,19 +1,22 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { Grid } from "@material-ui/core"
 import Card from "../Card"
 
-const CardList = ({ cities, handleDeleteButtonClick, temperatureFilter }) => {
+const CardList = ({ cities, onButtonClick, temperatureFilter }) => {
 	return cities.map(city => (
-		<Card
-			key={`${city.name}`}
-			name={city.name}
-			wind={city.wind}
-			pressure={city.pressure}
-			temperature={city.temperature}
-			icon={city.icon}
-			handleDeleteButtonClick={handleDeleteButtonClick}
-			temperatureFilter={temperatureFilter}
-		/>
+		<Grid item lg={3}>
+			<Card
+				key={`${city.name}`}
+				name={city.name}
+				wind={city.wind}
+				pressure={city.pressure}
+				temperature={city.temperature}
+				icon={city.icon}
+				handleDeleteButtonClick={onButtonClick}
+				temperatureFilter={temperatureFilter}
+			/>
+		</Grid>
 	))
 }
 

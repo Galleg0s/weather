@@ -1,9 +1,10 @@
-import React, { Component } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import * as actions from "../../../redux/actions"
 import { withTranslation } from "react-i18next"
 import { Grid, Typography } from "@material-ui/core"
+import { throttle, debounce } from "throttle-debounce"
+import * as actions from "../../../redux/actions"
 import {
 	getCities,
 	getTemperature,
@@ -12,68 +13,76 @@ import {
 	getHint,
 } from "../../../redux/selectors"
 
-import {
-	Autocomplete,
-	AddCityButton,
-	CardList,
-	Range,
-} from "../.."
-import { throttle, debounce } from "throttle-debounce"
+import { Autocomplete, AddCityButton, CardList, Range } from "../.."
 
-class App extends Component {
-	handleAddButtonClick = () => {
+const App = ({
+	suggestionList,
+	fetchSuggestions,
+	setNextCityName,
+	setSuggestionList,
+	addCity,
+	setHint,
+	nextCity,
+	deleteCity,
+	setTemperatureFilter,
+	temperature,
+	t,
+	cities,
+	hint,
+}) => {
+	const handleAddButtonClick = () => {
 		const isCityCardExist =
-			this.props.cities.filter(city => city.name === this.props.nextCity)
-				.length === 1
+			cities.filter(city => city.name === nextCity).length === 1
 
-		if (this.props.nextCity !== "" && !isCityCardExist) {
-			this.props.addCity(this.props.nextCity)
+		if (nextCity !== "" && !isCityCardExist) {
+			addCity(nextCity)
 		}
 	}
 
-	handleDeleteButtonClick = name => {
-		this.props.deleteCity(name)
-	}
-	handleRangeChange = degrees => {
-		this.props.setTemperatureFilter(degrees)
+	const handleDeleteButtonClick = name => {
+		deleteCity(name)
 	}
 
-	render() {
-		return (
-			<Grid container>
-				<Grid item lg={12} container>
-					<Grid item lg={7}>
-						<Autocomplete
-							suggestionList={this.props.suggestionList}
-							fetchSuggestions={this.props.fetchSuggestions}
-							setNextCityName={this.props.setNextCityName}
-							setSuggestionList={this.props.setSuggestionList}
-							setHint={this.props.setHint}
-						/>
-					</Grid>
-					<Grid item lg={1}>
-						<AddCityButton
-							nextCity={this.props.nextCity}
-							handleAddButtonClick={debounce(300, this.handleAddButtonClick)}
-						/>
-					</Grid>
-					<Grid item lg={4}>
-						<Range
-							temperature={this.props.temperature}
-							handleRangeChange={throttle(300, this.handleRangeChange)}
-							title={this.props.t("Warmer than")}
-						/>
-					</Grid>
-				</Grid>
-				<CardList
-					cities={this.props.cities}
-					handleDeleteButtonClick={this.handleDeleteButtonClick}
-					temperatureFilter={this.props.temperature}
-				/>
-				{this.props.hint && <Typography>{this.props.hint}</Typography>}
-			</Grid>
-		)
+	const handleRangeChange = degrees => {
+		setTemperatureFilter(degrees)
 	}
+
+	return (
+		<Grid container spacing={4}>
+			<Grid item container spacing={2}>
+				<Grid item lg={6}>
+					<Autocomplete
+						suggestionList={suggestionList}
+						fetchSuggestions={fetchSuggestions}
+						setNextCityName={setNextCityName}
+						setSuggestionList={setSuggestionList}
+						setHint={setHint}
+					/>
+				</Grid>
+				<Grid item lg={2}>
+					<AddCityButton
+						nextCity={nextCity}
+						onButtonClick={debounce(300, handleAddButtonClick)}
+					/>
+				</Grid>
+				<Grid item lg={4}>
+					<Range
+						temperature={temperature}
+						onRangeChange={throttle(300, handleRangeChange)}
+						title={t("Warmer than")}
+					/>
+				</Grid>
+			</Grid>
+			<Grid item container spacing={2}>
+				<CardList
+					cities={cities}
+					onButtonClick={handleDeleteButtonClick}
+					temperatureFilter={temperature}
+				/>
+			</Grid>
+			<Grid>{hint && <Typography>{hint}</Typography>}</Grid>
+		</Grid>
+	)
 }
 
 const mapStateToProps = state => {

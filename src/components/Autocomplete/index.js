@@ -1,63 +1,35 @@
 // *https://www.registers.service.gov.uk/registers/country/use-the-api*
-import React from "react"
+import React, { useState } from "react"
 import TextField from "@material-ui/core/TextField"
 import { Autocomplete as AutocompleteUI } from "@material-ui/lab"
 import CircularProgress from "@material-ui/core/CircularProgress"
 
-export default function Autocomplete({
+const Autocomplete = ({
 	fetchSuggestions,
 	suggestionList,
 	setNextCityName,
 	setSuggestionList,
-}) {
-	const [open, setOpen] = React.useState(false)
-	const [value, setValue] = React.useState("")
+}) => {
+	const [open, setOpen] = useState(false)
 	const loading = open && suggestionList.length === 0
 
-	React.useEffect(() => {
-		let active = true
-
-		if (!loading) {
-			return undefined
-		}
-
-		if (active) {
-			// что передать сюда?
+	const handleInputChange = (event, value) => {
+		if (value.length > 2) {
 			fetchSuggestions(value)
 		}
+	}
 
-		return () => {
-			active = false
-		}
-	}, [loading])
-
-	React.useEffect(() => {
-		if (!open) {
-			setSuggestionList([])
-		}
-	}, [open])
+	const handleOptionChange = (event, value) => setNextCityName(value)
 
 	return (
 		<AutocompleteUI
 			open={open}
-			onChange={(event, value) => {
-				setNextCityName(value)
-			}}
-			onOpen={() => {
-				setOpen(true)
-			}}
-			onClose={() => {
-				setOpen(false)
-			}}
-			getOptionSelected={(option, value) => {
-				return option === value.name
-			}}
-			onInputChange={(event, value) => {
-				setValue(value)
-			}}
-			getOptionLabel={option => {
-				return option
-			}}
+			onChange={handleOptionChange}
+			onOpen={() => setOpen(true)}
+			onClose={() => setOpen(false)}
+			getOptionSelected={(option, value) => option === value.name}
+			getOptionLabel={option => option}
+			onInputChange={handleInputChange}
 			options={suggestionList}
 			loading={loading}
 			freeSolo
@@ -83,3 +55,5 @@ export default function Autocomplete({
 		/>
 	)
 }
+
+export default Autocomplete

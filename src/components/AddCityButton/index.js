@@ -2,21 +2,16 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Button, Typography } from "@material-ui/core"
 
-const AddCardButton = ({ handleAddButtonClick }) => {
+const AddCardButton = ({ onButtonClick }) => {
 	return (
-		<Button
-			variant="outlined"
-			color="primary"
-			onClick={handleAddButtonClick}
-			value="city"
-		>
-			<Typography>+</Typography>
+		<Button color="primary" onClick={onButtonClick} value="city">
+			<Typography variant="h4">+</Typography>
 		</Button>
 	)
 }
 
 AddCardButton.propTypes = {
-	handleAddButtonClick: PropTypes.func.isRequired,
+	onButtonClick: PropTypes.func.isRequired,
 }
 
 export default AddCardButton

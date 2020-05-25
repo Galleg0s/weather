@@ -14,9 +14,10 @@ function filterSuggestions(results) {
 	const duplicatedCities = results
 		.filter(
 			({ localityType }) =>
-				(localityType && localityType.code === "city-city") ||
-				localityType.code === "city-village" ||
-				localityType.code === "city-posyolok"
+				localityType &&
+				(localityType.code === "city-city" ||
+					localityType.code === "city-village" ||
+					localityType.code === "city-posyolok")
 		)
 		.map(result => result.name)
 
@@ -30,11 +31,11 @@ function* fetchSuggestionsWatcher({ payload }) {
 		const inputValue = payload.trim().toLowerCase()
 		const inputLength = inputValue.length
 
-		if (inputLength === "" || inputLength < 2) {
+		if (inputValue === "" || inputLength < 2) {
 			yield put(setSuggestionList([]))
 		} else {
 			const { result } = yield call(get, geoApi)
-			const suggestionList = filterSuggestions(result)
+			const suggestionList = yield call(filterSuggestions, result)
 			yield put(setSuggestionList(suggestionList))
 		}
 	} catch (error) {

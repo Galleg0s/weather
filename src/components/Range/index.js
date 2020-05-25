@@ -5,9 +5,9 @@ import { Paragraph } from "../ui"
 import { StyledRange } from "./styles"
 import formatTemperature from "../../utils"
 
-const Range = ({ temperature, handleRangeChange, title }) => {
+const Range = ({ temperature, onRangeChange, title }) => {
 	return (
-		<div>
+		<>
 			<Paragraph paddings="0 0 12px 0">{title}</Paragraph>
 			<StyledRange>
 				<InputRange
@@ -16,16 +16,16 @@ const Range = ({ temperature, handleRangeChange, title }) => {
 					minValue={-20}
 					value={temperature}
 					formatLabel={formatTemperature}
-					onChange={degrees => handleRangeChange(degrees)}
+					onChange={degrees => onRangeChange(degrees)}
 				/>
 			</StyledRange>
-		</div>
+		</>
 	)
 }
 
 Range.propTypes = {
 	temperature: PropTypes.number.isRequired,
-	handleRangeChange: PropTypes.func.isRequired,
+	onRangeChange: PropTypes.func.isRequired,
 	title: PropTypes.string.isRequired,
 }
 
